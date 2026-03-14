@@ -25,12 +25,22 @@ class KodtarControllerTest {
                 new KodtarItemResponse("KT007", "001", "kozterulet")
         ));
 
-        mockMvc.perform(get("/api/kodtar").param("validOn", "2026-03-14"))
+        mockMvc.perform(get("/api/szabi").param("validOn", "2026-03-14"))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$[0].csoportKod").value("KT007"))
                 .andExpect(jsonPath("$[0].ertekKod").value("001"))
                 .andExpect(jsonPath("$[0].ertek").value("kozterulet"));
 
         verify(service).getKodtar(LocalDate.of(2026, 3, 14));
+    }
+
+    @Test
+    void shouldAllowMissingDateParameter() throws Exception {
+        when(service.getKodtar(null)).thenReturn(List.of());
+
+        mockMvc.perform(get("/api/szabi"))
+                .andExpect(status().isOk());
+
+        verify(service).getKodtar(null);
     }
 }

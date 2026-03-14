@@ -62,4 +62,35 @@
             </plugin>
         </plugins>
     </build>
+
+    <profiles>
+        <profile>
+            <id>api-it</id>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-failsafe-plugin</artifactId>
+                        <version>3.5.4</version>
+                        <configuration>
+                            <systemPropertyVariables>
+                                <integration.base-url>http://127.0.0.1:8080</integration.base-url>
+                                <integration.db.url>jdbc:mysql://127.0.0.1:3306/demo_project?useSSL=false&amp;allowPublicKeyRetrieval=true&amp;serverTimezone=UTC</integration.db.url>
+                                <integration.db.username>root</integration.db.username>
+                                <integration.db.password></integration.db.password>
+                            </systemPropertyVariables>
+                        </configuration>
+                        <executions>
+                            <execution>
+                                <goals>
+                                    <goal>integration-test</goal>
+                                    <goal>verify</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+    </profiles>
 </project>

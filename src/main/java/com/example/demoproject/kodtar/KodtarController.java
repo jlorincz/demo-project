@@ -16,7 +16,7 @@ import java.time.LocalDate;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/kodtar")
+@RequestMapping("/api/szabi")
 public class KodtarController {
 
     private final KodtarService service;
@@ -27,8 +27,8 @@ public class KodtarController {
 
     @GetMapping
     @Operation(
-            summary = "List relevant kodtar entries",
-            description = "Returns the relevant kodtar values filtered by the configured csoport_kod list and the requested validity day.",
+            summary = "List relevant szabi entries",
+            description = "Returns the relevant szabi values filtered by the configured csoport_kod list and the requested validity day.",
             responses = @ApiResponse(
                     responseCode = "200",
                     description = "Successful lookup",
