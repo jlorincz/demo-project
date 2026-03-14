@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+        https://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd">
+
+    <changeSet id="001-create-kr-kodtar-table" author="codex">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <tableExists tableName="KR_KODTAR_TBL"/>
+            </not>
+        </preConditions>
+
+        <createTable tableName="KR_KODTAR_TBL">
+            <column name="ID" type="DECIMAL(10,0)">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="pk_kr_kodtar_tbl"/>
+            </column>
+            <column name="CSOPORT_KOD" type="VARCHAR(10)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="ERTEK_KOD" type="VARCHAR(50)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="P1" type="TEXT"/>
+            <column name="P2" type="TEXT"/>
+            <column name="P3" type="TEXT"/>
+            <column name="P4" type="TEXT"/>
+            <column name="P5" type="TEXT"/>
+            <column name="P6" type="TEXT"/>
+            <column name="ERTEK" type="TEXT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="LETREHOZO_FELH_ID" type="DECIMAL(10,0)" defaultValueNumeric="0">
+                <constraints nullable="false"/>
+            </column>
+            <column name="LETREHOZVA" type="DATETIME" defaultValue="2011-09-09 00:00:00">
+                <constraints nullable="false"/>
+            </column>
+            <column name="MODOSITO_FELH_ID" type="DECIMAL(10,0)"/>
+            <column name="MODOSITVA" type="DATETIME"/>
+            <column name="ERV_KEZD" type="DATETIME">
+                <constraints nullable="false"/>
+            </column>
+            <column name="ERV_VEGE" type="DATETIME" defaultValue="3999-12-31 00:00:00">
+                <constraints nullable="false"/>
+            </column>
+            <column name="SORREND" type="DECIMAL(10,0)"/>
+            <column name="TERV_ERV_VEGE" type="DATETIME"/>
+        </createTable>
+
+        <addUniqueConstraint tableName="KR_KODTAR_TBL"
+                             columnNames="CSOPORT_KOD, ERTEK_KOD, ERV_VEGE"
+                             constraintName="uk_kr_kodtar_tbl_csoport_ertek_erv_vege"/>
+    </changeSet>
+
+</databaseChangeLog>
