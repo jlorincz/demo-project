@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+        https://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd">
+
+    <changeSet id="002-insert-kr-kodtar-test-data" author="codex">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                SELECT COUNT(*)
+                FROM KR_KODTAR_TBL
+                WHERE CSOPORT_KOD = 'KT015'
+                  AND ERTEK_KOD IN ('DEMO-HU', 'DEMO-AT', 'DEMO-SK')
+            </sqlCheck>
+        </preConditions>
+
+        <insert tableName="KR_KODTAR_TBL">
+            <column name="ID" valueNumeric="1001"/>
+            <column name="CSOPORT_KOD" value="KT015"/>
+            <column name="ERTEK_KOD" value="DEMO-HU"/>
+            <column name="ERTEK" value="Random Country Alpha"/>
+            <column name="LETREHOZO_FELH_ID" valueNumeric="1"/>
+            <column name="LETREHOZVA" valueDate="2026-03-14T09:00:00"/>
+            <column name="ERV_KEZD" valueDate="2020-01-01T00:00:00"/>
+            <column name="ERV_VEGE" valueDate="3999-12-31T00:00:00"/>
+            <column name="SORREND" valueNumeric="1"/>
+        </insert>
+
+        <insert tableName="KR_KODTAR_TBL">
+            <column name="ID" valueNumeric="1002"/>
+            <column name="CSOPORT_KOD" value="KT015"/>
+            <column name="ERTEK_KOD" value="DEMO-AT"/>
+            <column name="ERTEK" value="Random Country Beta"/>
+            <column name="LETREHOZO_FELH_ID" valueNumeric="1"/>
+            <column name="LETREHOZVA" valueDate="2026-03-14T09:00:00"/>
+            <column name="ERV_KEZD" valueDate="2020-01-01T00:00:00"/>
+            <column name="ERV_VEGE" valueDate="3999-12-31T00:00:00"/>
+            <column name="SORREND" valueNumeric="2"/>
+        </insert>
+
+        <insert tableName="KR_KODTAR_TBL">
+            <column name="ID" valueNumeric="1003"/>
+            <column name="CSOPORT_KOD" value="KT015"/>
+            <column name="ERTEK_KOD" value="DEMO-SK"/>
+            <column name="ERTEK" value="Random Country Gamma"/>
+            <column name="LETREHOZO_FELH_ID" valueNumeric="1"/>
+            <column name="LETREHOZVA" valueDate="2026-03-14T09:00:00"/>
+            <column name="ERV_KEZD" valueDate="2020-01-01T00:00:00"/>
+            <column name="ERV_VEGE" valueDate="3999-12-31T00:00:00"/>
+            <column name="SORREND" valueNumeric="3"/>
+        </insert>
+    </changeSet>
+
+</databaseChangeLog>
